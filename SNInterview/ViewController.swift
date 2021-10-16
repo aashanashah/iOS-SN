@@ -17,10 +17,11 @@ protocol CoffeeShopTapDelegate {
     func didSelectItem(_ item: UIView?)
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     var delegate: CoffeeShopTapDelegate!
     
-    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var tableView: UITableView!
     
     private let reviews = [
         CoffeeShop(name:"Lofty", review: "Knowledgeable staff, stacked menu. Trust the Ethiopian in a pour over if you know your flavors. Will be back for the rest of this menu soon.", rating: 4),
@@ -33,30 +34,54 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reviews.forEach { coffeeShop in
-            guard let containerView = CoffeeShopItemView.fromNib() as? CoffeeShopItemView else {
-                fatalError("Failed loading CoffeeShopItemView")
-            }
-            
-            containerView.nameLabel.text = coffeeShop.name
-            containerView.reviewLabel.text = coffeeShop.review
-            containerView.ratingLabel.text = "Rating: \(Int(coffeeShop.rating))"
-            stackView.addArrangedSubview(containerView)
-            containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+//        reviews.forEach { coffeeShop in
+//            guard let containerView = CoffeeShopItemView.fromNib() as? CoffeeShopItemView else {
+//                fatalError("Failed loading CoffeeShopItemView")
+//            }
+//
+//            containerView.nameLabel.text = coffeeShop.name
+//            containerView.reviewLabel.text = coffeeShop.review
+//            containerView.ratingLabel.text = "Rating: \(Int(coffeeShop.rating))"
+//            stackView.addArrangedSubview(containerView)
+//            containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+//        }
+        let coffeeShopItemView = CoffeeShopItemView.fromNib() as? CoffeeShopItemView
+        //tableView.register(CoffeeShopItemView.self, forCellReuseIdentifier: "")
+        delegate = CoffeeShopDetailsHandler()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        reviews.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CoffeeShopItemCellIdentifier"), let coffeeShopItemView = CoffeeShopItemView.fromNib() as? CoffeeShopItemView else {
+            return UITableViewCell()
         }
         
-        delegate = CoffeeShopDetailsHandler()
+        
+        coffeeShopItemView.nameLabel.text = reviews[indexPath.row].name
+        coffeeShopItemView.reviewLabel.text = reviews[indexPath.row].review
+        coffeeShopItemView.ratingLabel.text = reviews[indexPath.row].rating.description
+        cell.contentView.bounds = coffeeShopItemView.bounds
+        cell.contentView.addSubview(coffeeShopItemView)
+        return cell
     }
     
     @objc
     func onTap(item: UIView) {
-        delegate.didSelectItem(nil)
+        delegate.didSelectItem(item)
     }
 }
 
 class CoffeeShopDetailsHandler: CoffeeShopTapDelegate {
     func didSelectItem(_ item: UIView?) {
-        let tapped = item as! CoffeeShopItemView
+        guard let tapped = item as? CoffeeShopItemView else  {
+            return
+        }
         
         // TODO: display the item's details
         print("Item Tapped: \(tapped)")
