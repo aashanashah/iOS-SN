@@ -10,6 +10,7 @@ import UIKit
 
 class CoffeeShopReviewViewController: UIViewController {
     @IBOutlet weak var reviewLabel: UILabel!
+    
     var name = ""
     var reviewText = ""
 
@@ -19,6 +20,5 @@ class CoffeeShopReviewViewController: UIViewController {
         title = name
 
         reviewLabel.text = reviewText
-        // Do any additional setup after loading the view.
     }
 }
