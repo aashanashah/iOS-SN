@@ -10,10 +10,13 @@ import UIKit
 
 class CoffeeShopReviewViewController: UIViewController {
     @IBOutlet weak var reviewLabel: UILabel!
+    var name = ""
     var reviewText = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.topItem?.backButtonTitle = "Back"
+        title = name
 
         reviewLabel.text = reviewText
         // Do any additional setup after loading the view.

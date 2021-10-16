@@ -14,9 +14,6 @@ struct CoffeeShop {
 }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    // var delegate: CoffeeShopTapDelegate!
-    
     @IBOutlet private weak var tableView: UITableView!
     
     private let reviews = [
@@ -32,7 +29,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
-       // delegate = CoffeeShopDetailsHandler()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,18 +54,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
+        reviewViewController.name = reviews[indexPath.row].name
         reviewViewController.reviewText = reviews[indexPath.row].review
         navigationController?.pushViewController(reviewViewController, animated: true)
     }
 }
-
-//class CoffeeShopDetailsHandler: CoffeeShopTapDelegate {
-//    func didSelectItem(_ item: UIView?) {
-//        guard let tapped = item as? CoffeeShopItemView else  {
-//            return
-//        }
-//
-//        // TODO: display the item's details
-//        print("Item Tapped: \(tapped)")
-//    }
-//}
