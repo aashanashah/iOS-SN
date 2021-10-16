@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let reviewViewController = storyboard?.instantiateViewController(withIdentifier: "CoffeeShopReviewViewController") as? CoffeeShopReviewViewController else {
+        guard let reviewViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: "CoffeeShopReviewViewController")) as? CoffeeShopReviewViewController else {
             return
         }
         
