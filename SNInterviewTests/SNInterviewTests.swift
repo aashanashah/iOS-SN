@@ -23,9 +23,16 @@ class SNInterviewTests: XCTestCase {
         XCTAssertEqual(coffeeShop.name, "Test Coffee")
         XCTAssertEqual(coffeeShop.review, "Test Review")
         XCTAssertEqual(coffeeShop.rating, 1)
+        
+        let dict: [String: Any] = ["name": "Test Coffee 2", "review": "Test Review 2", "rating": 3]
+        let coffeeShopFromDict = CoffeeShop(from: dict)
+        XCTAssertEqual(coffeeShopFromDict.name, "Test Coffee 2")
+        XCTAssertEqual(coffeeShopFromDict.review, "Test Review 2")
+        XCTAssertEqual(coffeeShopFromDict.rating, 3)
     }
     
     func testLoadFromJSON() {
-        // TODO: load coffee shops from json and make sure they are loaded correctly
+        // Done in CoffeeShopReviewModelTests
     }
+    
 }

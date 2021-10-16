@@ -27,15 +27,12 @@ class CoffeeShopReviewViewModel: NSObject {
         }
     }
     
+    // injecting model here so we can create Mock for unit tests if needed
     init(model: CoffeeShopReviewModel) {
         self.model = model
         super.init()
         
         reviews = model.fetchReviews()
-    }
-    
-    func notifyDataChange() {
-        reviews = model.reviews
     }
     
     var numberOfRows: Int {
