@@ -52,6 +52,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.contentView.addSubview(coffeeShopItemView)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let reviewViewController = storyboard?.instantiateViewController(withIdentifier: "CoffeeShopReviewViewController") as? CoffeeShopReviewViewController else {
+            return
+        }
+        
+        reviewViewController.reviewText = reviews[indexPath.row].review
+        navigationController?.pushViewController(reviewViewController, animated: true)
+    }
 }
 
 //class CoffeeShopDetailsHandler: CoffeeShopTapDelegate {

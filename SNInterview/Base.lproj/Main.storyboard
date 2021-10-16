@@ -50,6 +50,38 @@
             </objects>
             <point key="canvasLocation" x="1068" y="783"/>
         </scene>
+        <!--Coffee Shop Review View Controller-->
+        <scene sceneID="e3O-mO-1I8">
+            <objects>
+                <viewController storyboardIdentifier="CoffeeShopReviewViewController" id="5Qo-93-jeH" customClass="CoffeeShopReviewViewController" customModule="SNInterview" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="adS-5A-ece">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqo-ZR-GYP">
+                                <rect key="frame" x="10" y="59" width="394" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ut0-Od-BfU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eqo-ZR-GYP" firstAttribute="top" secondItem="Ut0-Od-BfU" secondAttribute="top" constant="15" id="HZO-av-jOL"/>
+                            <constraint firstItem="Ut0-Od-BfU" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eqo-ZR-GYP" secondAttribute="bottom" constant="15" id="Wf9-cQ-b1h"/>
+                            <constraint firstItem="Ut0-Od-BfU" firstAttribute="trailing" secondItem="eqo-ZR-GYP" secondAttribute="trailing" constant="10" id="r1y-MU-Gdg"/>
+                            <constraint firstItem="eqo-ZR-GYP" firstAttribute="leading" secondItem="Ut0-Od-BfU" secondAttribute="leading" constant="10" id="w73-yj-Zzf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="reviewLabel" destination="eqo-ZR-GYP" id="7qB-8a-Wl1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CXT-0e-TbL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1854" y="769"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="MJa-tv-hQK">
             <objects>
