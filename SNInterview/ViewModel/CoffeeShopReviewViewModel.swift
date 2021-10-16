@@ -37,4 +37,12 @@ class CoffeeShopReviewViewModel: NSObject {
     func notifyDataChange() {
         reviews = model.reviews
     }
+    
+    var numberOfRows: Int {
+        reviews.count
+    }
+    
+    func review(for row: Int) -> CoffeeShop {
+        reviews[row]
+    }
 }

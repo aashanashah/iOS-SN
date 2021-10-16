@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.reviews.count
+        viewModel.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,17 +37,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return UITableViewCell()
         }
         
-        
-        coffeeShopItemView.nameLabel.text = viewModel.reviews[indexPath.row].name
-        coffeeShopItemView.reviewLabel.text = viewModel.reviews[indexPath.row].review
-        coffeeShopItemView.ratingLabel.text = viewModel.reviews[indexPath.row].rating.description
+        let review = viewModel.review(for: indexPath.row)
+        coffeeShopItemView.nameLabel.text = review.name
+        coffeeShopItemView.reviewLabel.text = review.review
+        coffeeShopItemView.ratingLabel.text = review.rating.description
         cell.contentView.bounds = coffeeShopItemView.bounds
         cell.contentView.addSubview(coffeeShopItemView)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let reviewViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: "CoffeeShopReviewViewController")) as? CoffeeShopReviewViewController else {
+        guard let reviewViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: CoffeeShopReviewViewController.self)) as? CoffeeShopReviewViewController else {
             return
         }
         
