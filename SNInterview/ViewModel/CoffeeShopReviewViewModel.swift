@@ -37,12 +37,4 @@ class CoffeeShopReviewViewModel: NSObject {
     func notifyDataChange() {
         reviews = model.reviews
     }
-    
-    func mapToCoffeeShop(from dict: [String:Any]) -> CoffeeShop {
-        let name = dict["name"] as? String ?? ""
-        let review = dict["review"] as? String ?? ""
-        let rating = dict["rating"] as? Int ?? 0
-        
-        return CoffeeShop(name: name, review: review, rating: rating)
-    }
 }
