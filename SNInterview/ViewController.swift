@@ -13,13 +13,9 @@ struct CoffeeShop {
     let rating: Int
 }
 
-protocol CoffeeShopTapDelegate {
-    func didSelectItem(_ item: UIView?)
-}
-
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var delegate: CoffeeShopTapDelegate!
+    // var delegate: CoffeeShopTapDelegate!
     
     @IBOutlet private weak var tableView: UITableView!
     
@@ -36,21 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-//        reviews.forEach { coffeeShop in
-//            guard let containerView = CoffeeShopItemView.fromNib() as? CoffeeShopItemView else {
-//                fatalError("Failed loading CoffeeShopItemView")
-//            }
-//
-//            containerView.nameLabel.text = coffeeShop.name
-//            containerView.reviewLabel.text = coffeeShop.review
-//            containerView.ratingLabel.text = "Rating: \(Int(coffeeShop.rating))"
-//            stackView.addArrangedSubview(containerView)
-//            containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
-//        }
-        let coffeeShopItemView = CoffeeShopItemView.fromNib() as? CoffeeShopItemView
-        //tableView.register(CoffeeShopItemView.self, forCellReuseIdentifier: "")
-        delegate = CoffeeShopDetailsHandler()
+       // delegate = CoffeeShopDetailsHandler()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,20 +52,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.contentView.addSubview(coffeeShopItemView)
         return cell
     }
-    
-    @objc
-    func onTap(item: UIView) {
-        delegate.didSelectItem(item)
-    }
 }
 
-class CoffeeShopDetailsHandler: CoffeeShopTapDelegate {
-    func didSelectItem(_ item: UIView?) {
-        guard let tapped = item as? CoffeeShopItemView else  {
-            return
-        }
-        
-        // TODO: display the item's details
-        print("Item Tapped: \(tapped)")
-    }
-}
+//class CoffeeShopDetailsHandler: CoffeeShopTapDelegate {
+//    func didSelectItem(_ item: UIView?) {
+//        guard let tapped = item as? CoffeeShopItemView else  {
+//            return
+//        }
+//
+//        // TODO: display the item's details
+//        print("Item Tapped: \(tapped)")
+//    }
+//}
