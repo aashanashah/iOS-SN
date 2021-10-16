@@ -13,9 +13,10 @@ protocol CoffeeShopReviewViewModelDelegate: NSObject {
     func notifyDataChange()
 }
 
-class CoffeeShopReviewViewModel: NSObject, CoffeeShopModelDelegate {
+class CoffeeShopReviewViewModel: NSObject {
     
     // made weak to avoid retain cycles
+    // would have used combine if the target version was 13 and above
     weak var delegate: CoffeeShopReviewViewModelDelegate?
     let model: CoffeeShopReviewModel
     
@@ -30,7 +31,6 @@ class CoffeeShopReviewViewModel: NSObject, CoffeeShopModelDelegate {
         self.model = model
         super.init()
         
-        model.delegate = self
         reviews = model.fetchReviews()
     }
     

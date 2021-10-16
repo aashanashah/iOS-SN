@@ -9,13 +9,8 @@
 import Combine
 import UIKit
 
-protocol CoffeeShopModelDelegate: NSObject {
-    func notifyDataChange()
-}
-
 class CoffeeShopReviewModel {
     var reviews = [CoffeeShop]()
-    weak var delegate: CoffeeShopModelDelegate?
     
     func fetchReviews() -> [CoffeeShop] {
         var fetchedReviews = [CoffeeShop]()
@@ -34,7 +29,6 @@ class CoffeeShopReviewModel {
             }
         }
         
-        delegate?.notifyDataChange()
         return fetchedReviews
     }
 }
